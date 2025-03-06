@@ -1,0 +1,25 @@
+{
+    "name": "alves/agenda_musical",
+    "description": "Projeto para gerenciar uma agenda musical.",
+    "version": "1.0.0",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alves\\AgendaMusical\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AlvesCosta08",
+            "email": "alvescosta74@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "phpunit tests/"
+    }
+}
