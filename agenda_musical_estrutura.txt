@@ -72,7 +72,7 @@ CREATE TABLE tokens_recuperacao (
 
 
 
-/meu_projeto/
+/agenda_musical/
 │── /assets/               # Arquivos estáticos (CSS, JS, imagens)
 │   ├── /css/              # Arquivos CSS (Bootstrap e estilos personalizados)
 │   ├── /js/               # Scripts JavaScript
@@ -122,6 +122,7 @@ CREATE TABLE tokens_recuperacao (
 │── /public/               # Pasta pública (ponto de entrada do sistema)
 │   ├── index.php          # Página inicial que carrega tudo
 │
+│── .env                   # Configurações sensíveis (banco de dados, API keys, etc.)
 │── .htaccess              # Arquivo de reescrita para URLs amigáveis
 │── README.md              # Documentação do projeto
 
