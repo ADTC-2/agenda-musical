@@ -1,82 +1,5 @@
-agenda_musical/
-│
-├── app/                   
-│   ├── Http/              
-│   │   ├── Controllers/   
-│   │   │   ├── AuthController.php  
-│   │   │   ├── CultoController.php  
-│   │   │   ├── MusicaController.php  
-│   │   │   ├── RepertorioController.php  
-│   │   │   ├── EscalaController.php  
-│   │   │   ├── InstrumentoController.php  
-│   │   │   ├── UserController.php  
-│   │   │   └── LogController.php  
-│   │   ├── Middleware/    
-│   │   │   ├── Authenticate.php  
-│   │   │   ├── AdminMiddleware.php  
-│   │   │   └── CorsMiddleware.php  
-│   ├── Models/            
-│   │   ├── User.php       
-│   │   ├── Culto.php      
-│   │   ├── Musica.php     
-│   │   ├── Repertorio.php 
-│   │   ├── Escala.php     
-│   │   ├── Instrumento.php
-│   │   ├── TokenRecuperacao.php
-│   │   └── Log.php
-│   ├── Services/          
-│   │   ├── AuthService.php 
-│   │   ├── CultoService.php 
-│   │   ├── MusicaService.php 
-│   │   ├── RepertorioService.php 
-│   │   ├── EscalaService.php 
-│   │   ├── EmailService.php 
-│   │   └── NotificationService.php  
-│
-├── database/              
-│   ├── factories/         
-│   ├── migrations/        
-│   ├── seeders/           
-│   ├── factories/         
-│
-├── public/                
-│   ├── assets/            
-│   ├── index.php          
-│
-├── resources/             
-│   ├── views/             
-│   │   ├── auth/          
-│   │   │   ├── login.blade.php      
-│   │   │   ├── register.blade.php   
-│   │   │   └── forgot-password.blade.php 
-│   │   ├── dashboard/     
-│   │   │   ├── cultos.blade.php      
-│   │   │   ├── musicas.blade.php      
-│   │   │   ├── repertorios.blade.php      
-│   │   │   ├── escalas.blade.php      
-│   │   │   ├── usuarios.blade.php      
-│   │   │   └── logs.blade.php      
-│   │   ├── layout/        
-│   │   │   ├── header.blade.php     
-│   │   │   ├── footer.blade.php     
-│   │   │   └── sidebar.blade.php    
-│   │   └── errors/        
-│   │       ├── 404.blade.php        
-│   │       └── 500.blade.php        
-│
-├── routes/                
-│   ├── web.php        
-│   ├── api.php        
-│
-├── tests/                 
-│   └── ExampleTest.php    
-│
-├── .env                   
-├── .gitignore             
-├── composer.json          
-├── artisan
-├── package.json          
-└── README.md              
+
+
 
 
 CREATE TABLE usuarios (
@@ -88,6 +11,8 @@ CREATE TABLE usuarios (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
+
 CREATE TABLE cultos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
@@ -95,6 +20,8 @@ CREATE TABLE cultos (
     local VARCHAR(255),
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
 
 CREATE TABLE musicas (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -107,10 +34,8 @@ CREATE TABLE musicas (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE instrumentos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(50) UNIQUE NOT NULL
-);
+
+
 
 CREATE TABLE repertorios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -121,15 +46,21 @@ CREATE TABLE repertorios (
     FOREIGN KEY (musica_id) REFERENCES musicas(id) ON DELETE CASCADE
 );
 
+
+
+
 CREATE TABLE escalas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     culto_id INT NOT NULL,
     usuario_id INT NOT NULL,
-    instrumento_id INT NOT NULL,
+    instrumento VARCHAR(50),
     FOREIGN KEY (culto_id) REFERENCES cultos(id) ON DELETE CASCADE,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
-    FOREIGN KEY (instrumento_id) REFERENCES instrumentos(id) ON DELETE SET NULL
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
+
+
+
+
 
 CREATE TABLE tokens_recuperacao (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -139,18 +70,60 @@ CREATE TABLE tokens_recuperacao (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
-CREATE TABLE logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
-    acao VARCHAR(255) NOT NULL,
-    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
-);
 
--- Índices para melhorar o desempenho
-CREATE INDEX idx_usuarios_email ON usuarios(email);
-CREATE INDEX idx_escalas_culto ON escalas(culto_id);
-CREATE INDEX idx_repertorios_culto ON repertorios(culto_id);
+
+/meu_projeto/
+│── /assets/               # Arquivos estáticos (CSS, JS, imagens)
+│   ├── /css/              # Arquivos CSS (Bootstrap e estilos personalizados)
+│   ├── /js/               # Scripts JavaScript
+│   │   ├── ajax.js        # Funções gerais para chamadas AJAX
+│   │   ├── usuario.js     # Scripts específicos para usuários
+│   │   ├── culto.js       # Scripts específicos para cultos
+│   │   ├── musica.js      # Scripts específicos para músicas
+│   │   ├── repertorio.js  # Scripts específicos para repertórios
+│   │   ├── escala.js      # Scripts específicos para escalas
+│   ├── /img/              # Imagens do projeto
+│
+│── /config/               # Arquivos de configuração do banco de dados e constantes
+│   ├── database.php       # Configuração da conexão com o banco de dados
+│   ├── config.php         # Configurações gerais do sistema
+│
+│── /controllers/          # Controladores que lidam com as requisições
+│   ├── UsuarioController.php
+│   ├── CultoController.php
+│   ├── MusicaController.php
+│   ├── RepertorioController.php
+│   ├── EscalaController.php
+│   ├── AuthController.php
+│
+│── /models/               # Modelos que interagem com o banco de dados
+│   ├── Usuario.php
+│   ├── Culto.php
+│   ├── Musica.php
+│   ├── Repertorio.php
+│   ├── Escala.php
+│
+│── /views/                # Páginas visuais do sistema
+│   ├── /partials/         # Cabeçalhos, rodapés e componentes reutilizáveis
+│   ├── home.php
+│   ├── login.php
+│   ├── dashboard.php
+│
+│── /ajax/                 # Arquivos PHP para processar requisições AJAX
+│   ├── usuario_ajax.php
+│   ├── culto_ajax.php
+│   ├── musica_ajax.php
+│   ├── repertorio_ajax.php
+│   ├── escala_ajax.php
+│
+│── /routes/               # Arquivo de rotas do sistema
+│   ├── web.php
+│
+│── /public/               # Pasta pública (ponto de entrada do sistema)
+│   ├── index.php          # Página inicial que carrega tudo
+│
+│── .htaccess              # Arquivo de reescrita para URLs amigáveis
+│── README.md              # Documentação do projeto
 
 
 
