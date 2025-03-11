@@ -1,19 +1,30 @@
 <?php
-require_once '../controllers/UsuarioController.php';
-require_once '../controllers/CultoController.php';
-require_once '../controllers/MusicaController.php';
-require_once '../controllers/RepertorioController.php';
-require_once '../controllers/EscalaController.php';
+session_start();
 require_once '../controllers/AuthController.php';
 
-// Exemplo de rota
-$router->get('/', function() {
-    require_once '../views/dashboard.php';
-});
+$authController = new AuthController();
 
-// Rota para o login
-$router->post('/login', function() {
-    $authController = new AuthController();
-    $authController->login($_POST['email'], $_POST['senha']);
-});
+$action = $_GET['action'] ?? '';
+
+switch ($action) {
+    case 'login':
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $result = $authController->login($email, $senha);
+        if ($result['status'] === 'success') {
+            header('Location: ../views/dashboard.php');
+        } else {
+            $_SESSION['erro'] = $result['message'];
+            header('Location: ../views/login.php');
+        }
+        break;
+
+    case 'logout':
+        $authController->logout();
+        break;
+
+    default:
+        header('Location: ../views/login.php');
+        break;
+}
 ?>

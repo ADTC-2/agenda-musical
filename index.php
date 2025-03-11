@@ -1,12 +1,11 @@
 <?php
-session_start();
-
-if (isset($_SESSION["usuario_id"])) {
-    // Se o usuário estiver logado, redireciona para o painel
-    header("Location: views/dashboard.php");
+// Impedir o acesso direto a este arquivo
+if (basename($_SERVER['PHP_SELF']) === 'index.php') {
+    // Redireciona para o public/index.php
+    header("Location: public/index.php");
+    exit;
 } else {
-    // Caso contrário, leva para a tela de login
-    header("Location: views/login.php");
+    // Impede o acesso direto a outros arquivos PHP
+    die('Acesso negado.');
 }
-exit;
 ?>

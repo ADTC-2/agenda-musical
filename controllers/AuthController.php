@@ -9,7 +9,6 @@ class AuthController {
     }
 
     public function login($email, $senha) {
-        // Usa o método getByEmail herdado de BaseModel
         $usuario = $this->usuarioModel->getByEmail($email);
 
         if ($usuario && password_verify($senha, $usuario['senha'])) {
@@ -21,6 +20,22 @@ class AuthController {
 
         return ['status' => 'error', 'message' => 'Credenciais inválidas'];
     }
+
+    public function logout() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        session_unset();
+        session_destroy();
+        header('Location: /agenda_musical/views/login.php');
+        exit();
+    }
+}
+
+// Verifica se a ação de logout foi solicitada
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    $authController = new AuthController();
+    $authController->logout();
 }
 ?>
 
