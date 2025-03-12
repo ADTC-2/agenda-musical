@@ -14,15 +14,29 @@ if ($_SESSION['usuario_tipo'] != 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Louvor - Agenda Musical</title>
+    <title>Escalas <?php echo $anoSelecionado; ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">    
+
+    <style>
+        /* Estilo para o botão de logout fora da navbar */
+        .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- Botão de Logout FORA da navbar -->
+        <a href="../controllers/AuthController.php?action=logout" class="btn btn btn-light logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Sair
+        </a>
+
         <!-- Cabeçalho -->
         <div class="header">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -37,9 +51,6 @@ if ($_SESSION['usuario_tipo'] != 'admin') {
                                 <a class="nav-link active" href="#"><i class="fas fa-home"></i></a>
                             </li>
                         </ul>
-                        <!-- Botão de logout -->
-                        <a href="../controllers/AuthController.php?action=logout" class="btn btn-light"><i
-                                class="fas fa-sign-out-alt"></i></a>
                     </div>
                 </div>
             </nav>
@@ -66,7 +77,7 @@ if ($_SESSION['usuario_tipo'] != 'admin') {
 
     <!-- Menu inferior fixo para Admin -->
     <div class="menu-bottom">
-        <a href="#" class="menu-item" id="escalaMenu"><i class="fas fa-calendar-alt"></i> Escalas</a>
+        <a href="../views/escalas/index.php" class="menu-item" id="escalaMenu"><i class="fas fa-calendar-alt"></i> Escalas</a>
         <a href="#" class="menu-item" id="repertorioMenu"><i class="fas fa-book"></i> Repertório</a>
         <a href="#" class="menu-item" id="musicasMenu"><i class="fas fa-music"></i> Músicas</a>
         <a href="#" class="menu-item" id="usuariosMenu"><i class="fas fa-users"></i> Usuários</a>
