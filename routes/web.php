@@ -1,30 +1,23 @@
 <?php
-session_start();
-require_once '../controllers/AuthController.php';
+// routes/web.php
 
+require_once '../controllers/AuthController.php';
 $authController = new AuthController();
 
-$action = $_GET['action'] ?? '';
+// Rota para exibir o formulário de login
+if ($_SERVER['REQUEST_URI'] === '/login') {
+    $authController->loginView();
+}
 
-switch ($action) {
-    case 'login':
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        $result = $authController->login($email, $senha);
-        if ($result['status'] === 'success') {
-            header('Location: ../views/dashboard.php');
-        } else {
-            $_SESSION['erro'] = $result['message'];
-            header('Location: ../views/login.php');
-        }
-        break;
+// Rota para realizar o login
+if ($_SERVER['REQUEST_URI'] === '/login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $authController->login($email, $senha);
+}
 
-    case 'logout':
-        $authController->logout();
-        break;
-
-    default:
-        header('Location: ../views/login.php');
-        break;
+// Rota para realizar o logout
+if ($_SERVER['REQUEST_URI'] === '/logout') {
+    $authController->logout();
 }
 ?>

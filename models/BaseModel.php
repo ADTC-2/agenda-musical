@@ -44,6 +44,7 @@ class BaseModel {
         $stmt = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
     public function getByEmail($email) {
         $stmt = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE email = ?");
         $stmt->execute([$email]);

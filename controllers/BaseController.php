@@ -25,5 +25,10 @@ class BaseController {
     public function destroy($id) {
         return $this->model->delete($id);
     }
+
+    protected function render($view, $data = []) {
+        extract($data);
+        include "../views/$view";
+    }
 }
 ?>
