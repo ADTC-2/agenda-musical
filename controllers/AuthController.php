@@ -19,9 +19,17 @@ class AuthController {
         if ($usuario) {
             $_SESSION['usuario_id'] = $usuario['id'];
             $_SESSION['usuario_nome'] = $usuario['nome'];
+            $_SESSION['usuario_email'] = $usuario['email'];
             $_SESSION['usuario_tipo'] = $usuario['tipo'];
 
-            header('Location: ../views/dashboard.php'); // Redireciona para o dashboard
+            // Redireciona para o dashboard de acordo com o tipo de usuário
+            if ($usuario['tipo'] == 'admin') {
+                header('Location: ../views/dashboard.php'); // Dashboard do admin
+            } elseif ($usuario['tipo'] == 'musico') {
+                header('Location: ../views/dashboard_musico.php'); // Dashboard do músico
+            } else {
+                header('Location: ../views/dashboard_user.php'); // Dashboard do usuário comum
+            }
             exit();
         } else {
             $_SESSION['erro_login'] = 'E-mail ou senha incorretos.';

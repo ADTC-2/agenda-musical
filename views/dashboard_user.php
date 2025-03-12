@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// Verifica se o usuário é admin
-if ($_SESSION['usuario_tipo'] != 'admin') {
-    header('Location: login.php'); // Redireciona para login se não for admin
+// Verifica se o usuário é comum
+if ($_SESSION['usuario_tipo'] != 'usuario') {
+    header('Location: login.php'); // Redireciona para login se não for usuário comum
     exit();
 }
 ?>
@@ -18,7 +18,7 @@ if ($_SESSION['usuario_tipo'] != 'admin') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="shortcut icon" href="../assets/img/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard_user.css">
 </head>
 
 <body>
@@ -64,12 +64,10 @@ if ($_SESSION['usuario_tipo'] != 'admin') {
         </div>
     </div>
 
-    <!-- Menu inferior fixo para Admin -->
+    <!-- Menu inferior fixo para Usuário -->
     <div class="menu-bottom">
         <a href="#" class="menu-item" id="escalaMenu"><i class="fas fa-calendar-alt"></i> Escalas</a>
         <a href="#" class="menu-item" id="repertorioMenu"><i class="fas fa-book"></i> Repertório</a>
-        <a href="#" class="menu-item" id="musicasMenu"><i class="fas fa-music"></i> Músicas</a>
-        <a href="#" class="menu-item" id="usuariosMenu"><i class="fas fa-users"></i> Usuários</a>
         <a href="#" class="menu-item" id="avisosMenu"><i class="fas fa-bell"></i> Avisos</a>
     </div>
 
@@ -94,3 +92,4 @@ if ($_SESSION['usuario_tipo'] != 'admin') {
 </body>
 
 </html>
+
