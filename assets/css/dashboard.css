@@ -1,185 +1,119 @@
-:root {
-    --primary-color: #9B1B30; /* Vermelho */
-    --secondary-color: #777;
-    --background-color: #f8f8f8;
-    --text-color: #333;
-    --event-bg: #fef2f3;
-}
-
-body, h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: var(--background-color);
-    padding-bottom: 60px;
-}
-
-.container {
-    max-width: 900px;
-    margin: auto;
+/* Menu inferior fixo */
+.menu-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background: #fff;
-    padding: 20px;
-}
-
-.header {
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
     padding: 10px 0;
+    z-index: 1000;
 }
 
-.header i {
-    color: var(--primary-color);
-    font-size: 1.5em;
-    cursor: pointer;
+.menu-bottom nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Ajuste para evitar espaçamento excessivo */
 }
 
-.header img {
-    height: 40px;
+.menu-item {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s, transform 0.2s;
 }
 
+.menu-item i {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.menu-item:hover {
+    color: #c0392b; /* Cor de destaque ao passar o mouse */
+    transform: scale(1.1);
+}
+
+/* Logo */
+#logo_vermelho {
+    width: 161px;
+    height: 52px;
+    margin-top: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Seção de eventos */
 .events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
     margin-top: 20px;
 }
 
 .event {
-    display: flex;
-    background: var(--event-bg);
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    justify-content: space-between;
-}
-
-.event-day {
+    padding: 15px;
     text-align: center;
-    font-weight: bold;
-    color: var(--primary-color);
-    width: 80px;
-}
-
-.event-day .day {
-    font-size: 16px;
-}
-
-.event-day .date {
-    font-size: 18px;
-}
-
-.event-day .time {
-    font-size: 14px;
-    color: var(--secondary-color);
-}
-
-.event-info {
-    flex: 1;
-    padding-left: 20px;
+    width: 100%;
+    max-width: 400px; /* Aumentando o tamanho máximo dos cards */
 }
 
 .event-title {
-    font-size: 1.2em;
+    font-size: 16px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: #333;
+    display: inline-block; /* Para garantir que os títulos fiquem lado a lado */
+    margin-right: 73px; /* Espaço entre os títulos */
 }
 
-.event-desc {
-    color: var(--secondary-color);
-    font-size: 0.9em;
+.event-day {
+    font-size: 14px;
+    color: #666;
 }
-.menu-item.active {
-    color: var(--primary-color);
-    font-weight: bold;
-    background-color: #f3f3f3;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.menu-bottom {
+.event {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: #fff;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid #ddd;
-    box-sizing: border-box;
+    justify-content: space-between; /* Para dar espaço entre as duas divs */
 }
 
-.menu-bottom a {
-    color: var(--secondary-color);
+.event-day, .event-info {
+    display: flex;
+    flex-direction: column; /* Para manter as divs internas em coluna, como você já tinha */
+}
+
+.event-day {
+    margin-right: 20px; /* Para dar um espaço entre os blocos */
+}
+.date a {
     text-decoration: none;
-    text-align: center;
-    font-size: 0.9em;
-    flex-grow: 1;
+    color: inherit; /* Herda a cor do elemento pai */
 }
-
-.menu-bottom a i {
-    display: block;
-    font-size: 1.5em;
-}
-
-.menu-bottom a.active {
-    color: var(--primary-color);
-    font-weight: bold;
-}
-
-.navbar {
-    background-color: #fff;
-    border-bottom: 2px solid var(--primary-color);
-}
-
-.navbar .navbar-nav .nav-link {
-    color: var(--text-color);
-}
-
-.navbar .navbar-nav .nav-link:hover {
-    color: var(--primary-color);
-}
-
-@media (max-width: 768px) {
-    .container {
-        max-width: 100%;
-        padding: 10px;
+/* Responsividade para telas menores */
+@media (max-width: 500px) {
+    .menu-bottom nav {
+        flex-wrap: wrap;
     }
-
-    .header img {
-        height: 30px;
+    .menu-item {
+        font-size: 12px;
+        padding: 5px;
     }
 
     .event {
-        display: flex;
-        align-items: center; /* Centraliza verticalmente */
-        justify-content: space-between; /* Espaço entre os elementos */
-        background: var(--event-bg);
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    .event-day {
-        text-align: center;
-        font-weight: bold;
-        color: var(--primary-color);
-        width: 80px; /* Largura fixa para o evento-day */
-    }
-    
-    .event-info {
-        flex: 1; /* Ocupa o espaço restante */
-        padding-left: 65px; /* Espaçamento entre event-day e event-info */
+        max-width: 90%; /* Aproveita melhor o espaço em telas pequenas */
     }
 
-    /* Ajuste para manter os ícones alinhados horizontalmente */
-    .menu-bottom {
-        flex-direction: row; /* Mantém os ícones alinhados horizontalmente */
-        align-items: center; /* Centraliza verticalmente */
-    }
 }
+

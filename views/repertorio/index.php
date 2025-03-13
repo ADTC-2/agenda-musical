@@ -19,7 +19,7 @@ $eventos = array_fill(0, 6, ['mes' => 'Março', 'status' => 'Finalizado']); // S
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Repetório</title>
     
     <!-- CSS -->
 <!-- Carregar o Font Awesome -->
@@ -35,25 +35,34 @@ $eventos = array_fill(0, 6, ['mes' => 'Março', 'status' => 'Finalizado']); // S
 <link rel="icon" href="path/to/your/favicon.ico" type="image/x-icon">
 
 <!-- Carregar o CSS personalizado -->
-<link rel="stylesheet" href="../assets/css/dashboard.css">
-
+<link rel="stylesheet" href="../../assets/css/dashboard.css">
 <style>
-    .welcome-title {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.welcome-message {
-    font-size: 1.2em;
-    text-align: center;
-    color: #555;
-    font-style: italic;
-}
-
-</style>
+         .card-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .card {
+            background-color: #dc3545;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }   
+</style>  
 </head>
 
 <body>
@@ -80,7 +89,7 @@ $eventos = array_fill(0, 6, ['mes' => 'Março', 'status' => 'Finalizado']); // S
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../controllers/AuthController.php?action=logout">
+                                <a class="nav-link" href="../../controllers/AuthController.php?action=logout">
                                     <i class="fas fa-sign-out-alt"></i> Sair
                                 </a>
                             </li>
@@ -94,41 +103,55 @@ $eventos = array_fill(0, 6, ['mes' => 'Março', 'status' => 'Finalizado']); // S
     <main class="container mt-5">
         <!-- Logo -->
         <div class="text-center">
-            <img src="../assets/img/logo_vermelho.png" alt="Louvor - Agenda Musical" class="img-fluid" id="logo_vermelho">
+            <img src="../../assets/img/logo_vermelho.png" alt="Louvor - Agenda Musical" class="img-fluid" id="logo_vermelho">
         </div>
 
         <!-- Seção de eventos -->
         <section class="events">
-            <h1 class="welcome-title">✨ Bem-vindo! 🎶</h1>
-            <p class="welcome-message">É um prazer tê-lo(a) aqui. Explore nossos eventos e deixe a música guiar sua jornada!</p>
+            <div class="card-container">
+                <div class="card">
+                    <i class="fas fa-plus-circle"></i>
+                    <h3>Cadastro</h3>
+                </div>
+                <div class="card">
+                    <i class="fas fa-search"></i>
+                    <h3>Pesquisa</h3>
+                </div>
+                <div class="card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Alteração</h3>
+                </div>
+                <div class="card">
+                    <i class="fas fa-trash"></i>
+                    <h3>Excluir</h3>
+                </div>
+            </div>
         </section>
-
 
     </main>
 
     <!-- Menu inferior fixo para Admin -->
     <footer class="menu-bottom">
         <nav>
-            <a href="../views/escalas/index.php" class="menu-item" aria-label="Escalas">
+            <a href="../escalas/index.php" class="menu-item" aria-label="Escalas">
                 <i class="fas fa-calendar-alt"></i> Escalas
             </a>
-            <a href="../views/repertorio/index.php" class="menu-item" aria-label="Repertório">
+            <a href="../repertorio/index.php" class="menu-item" aria-label="Repertório">
                 <i class="fas fa-book"></i> Repertório
             </a>
-            <a href="#" class="menu-item" aria-label="Músicas">
+            <a href="../musicas/index.php" class="menu-item" aria-label="Músicas">
                 <i class="fas fa-music"></i> Músicas
             </a>
-            <a href="#" class="menu-item" aria-label="Usuários">
+            <a href="../usuarios/index.php" class="menu-item" aria-label="Usuários">
                 <i class="fas fa-users"></i> Usuários
             </a>
-            <a href="#" class="menu-item" aria-label="Avisos">
+            <a href="../avisos/index.php" class="menu-item" aria-label="Avisos">
                 <i class="fas fa-bell"></i> Avisos
             </a>
         </nav>
     </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/evento_de_click.js"></script>
+ <!-- Scripts -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/evento_de_click.js"></script>
 </body>
-</html>
+</html>    
